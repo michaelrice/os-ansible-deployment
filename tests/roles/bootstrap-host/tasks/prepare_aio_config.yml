@@ -34,6 +34,8 @@
   with_items:
     - name: aodh.yml
       override: "{{ aodh_env_overrides | default({}) }}"
+    - name: cloudkitty.yml
+      override: "{{ cloudkitty_env_overrides | default({}) }}"
     - name: ceilometer.yml
       override: "{{ ceilometer_env_overrides | default({}) }}"
     - name: cinder.yml

@@ -29,23 +29,13 @@ component_skel:
 
 
 container_skel:
-  cloudkitty_apis_container:
+  cloudkitty_container:
     belongs_to:
       - infra_containers
       - os-infra_containers
     contains:
-      - cloudkitty_api_cloudwatch
       - cloudkitty_api_cfn
       - cloudkitty_api
-    properties:
-      service_name: cloudkitty
-      container_release: trusty
-  cloudkitty_engine_container:
-    belongs_to:
-      - infra_containers
-      - os-infra_containers
-    contains:
-      - cloudkitty_engine
     properties:
       service_name: cloudkitty
       container_release: trusty

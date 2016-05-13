@@ -17,12 +17,6 @@ component_skel:
   cloudkitty_api:
     belongs_to:
       - cloudkitty_all
-  cloudkitty_api_cfn:
-    belongs_to:
-      - cloudkitty_all
-  cloudkitty_api_cloudwatch:
-    belongs_to:
-      - cloudkitty_all
   cloudkitty_engine:
     belongs_to:
       - cloudkitty_all
@@ -34,8 +28,8 @@ container_skel:
       - infra_containers
       - os-infra_containers
     contains:
-      - cloudkitty_api_cfn
       - cloudkitty_api
+      - cloudkitty_engine
     properties:
       service_name: cloudkitty
       container_release: trusty

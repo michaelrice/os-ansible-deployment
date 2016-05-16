@@ -75,6 +75,17 @@
       when: is_metal | bool
       tags:
         - cloudkitty-logs
+    - name: Ensure Rabbitmq vhost
+      rabbitmq_vhost:
+        name: "{{ cloudkitty_rabbitmq_vhost }}"
+        state: "present"
+      delegate_to: "{{ groups['rabbitmq_all'][0] }}"
+      when:
+        - inventory_hostname == groups['cloudkitty_all'][0]
+        - groups['rabbitmq_all']|length > 0
+      tags:
+        - cloudkitty-rabbitmq
+        - cloudkitty-rabbitmq-vhost
     - name: Ensure rabbitmq user
       rabbitmq_user:
         user: "{{ cloudkitty_rabbitmq_userid }}"

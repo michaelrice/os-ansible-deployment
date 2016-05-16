@@ -75,6 +75,22 @@
       when: is_metal | bool
       tags:
         - cloudkitty-logs
+    - name: Ensure rabbitmq user
+      rabbitmq_user:
+        user: "{{ cloudkitty_rabbitmq_userid }}"
+        password: "{{ cloudkitty_rabbitmq_password }}"
+        vhost: "{{ cloudkitty_rabbitmq_vhost }}"
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
+        state: "present"
+      delegate_to: "{{ groups['rabbitmq_all'][0] }}"
+      when:
+        - inventory_hostname == groups['cloudkitty_all'][0]
+        - groups['rabbitmq_all']|length > 0
+      tags:
+        - cloudkitty-rabbitmq
+        - cloudkitty-rabbitmq-user
   roles:
     - role: "os_cloudkitty"
       cloudkitty_venv_tag: "{{ openstack_release }}"
